@@ -1,0 +1,19 @@
+---
+- name: Install apache
+  hosts: web
+  become: true
+  tasks:
+    - name: install apache2
+      apt:
+        name: "apache2"
+        state: present
+      
+    - name: copy my index page
+      copy:
+        src: "index.html"
+        dest: "/var/www/html/index.html"
+    
+    - name: Restart apache2 server
+      services:
+        name: apache2
+        state: restarted
