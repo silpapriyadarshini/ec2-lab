@@ -3,17 +3,16 @@
   hosts: web
   become: true
   tasks:
-    - name: install apache2
+    - name: install apache
       apt:
-        name: "apache2"
+        name: apache2
         state: present
-      
-    - name: copy my index page
+      when: inventory_hostname in groups['web']
+    - name: Copy my index page
       copy:
         src: "index.html"
         dest: "/var/www/html/index.html"
-    
-    - name: Restart apache2 server
-      services:
+    - name: Restarted apache2 server
+      service:
         name: apache2
         state: restarted
