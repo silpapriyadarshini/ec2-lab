@@ -1,18 +1,19 @@
 ---
-- name: Install apache
-  hosts: web
+- hosts: web
   become: true
   tasks:
-    - name: install apache
+    - name: update the apt-get
       apt:
-        name: apache2
+        update_cache: yes
+    - name: install apache2
+      apt:
+        name: "apache2"
         state: present
-      when: inventory_hostname in groups['web']
-    - name: Copy my index page
+    - name: copy my index page
       copy:
         src: "index.html"
         dest: "/var/www/html/index.html"
-    - name: Restarted apache2 server
+    - name: Restart apache2 server
       service:
         name: apache2
         state: restarted
