@@ -8,7 +8,7 @@ resource "aws_security_group" "ansible_server" {
     from_port        = 80
     to_port          = 80
     protocol         = "tcp"
-    cidr_blocks      = ["27.7.12.19/32"]
+    cidr_blocks      = ["27.7.81.51/32"]
   }
 
   ingress {
@@ -16,15 +16,15 @@ resource "aws_security_group" "ansible_server" {
     from_port        = 22
     to_port          = 22
     protocol         = "tcp"
-    cidr_blocks      = ["27.7.12.19/32"]
+    cidr_blocks      = ["27.7.81.51/32"]
   }
 
   ingress {
     description      = "Allow port 3306"
     from_port        = 3306
     to_port          = 3306
-    protocol         = "mysql"
-    cidr_blocks      = ["27.7.12.19/32"]
+    protocol         = "tcp"
+    cidr_blocks      = ["27.7.81.51/32"]
   }
 
   egress {
