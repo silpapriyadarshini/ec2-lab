@@ -9,7 +9,7 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
-data "aws_vpc" "lab-vpc" {
+data "aws_vpc" "lab_vpc" {
     filter {
         name   = "tag:Name"
         values = ["lab-vpc"]
